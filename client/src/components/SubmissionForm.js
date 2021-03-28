@@ -79,7 +79,6 @@ const SubmissionForm = () => {
                             </Form.Group>
                         </Col>
                     </Row>
-
                 </Form>
             </Container>
         </div>
