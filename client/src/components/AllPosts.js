@@ -1,18 +1,87 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { } from 'react-bootstrap';
+import { Link, navigate } from '@reach/router';
+import {Button } from 'react-bootstrap';
 
 
-const AllPosts = () => {
-   //HERE WE GO AGAIN
-   
+const AllPosts = (props) => {
 
+    const [allPosts, setAllPosts] = useState([]);
+    useEffect(() => {
+        axios
+            .get("http://localhost:8000/CuteInsurgence")
+            .then((response) => {
+                console.log(response.data);
+                setAllPosts(response.data);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }, []);
 
+//Waiting for Controllers/db to be wired 
     return (
-        <div>
-            <h1> AllPosts.js </h1>
+        <div className="cuteinsurgence-body-wrapper">
+        <div className="AllPosts-post-display">
+            <h2>SE Asian Tarsier</h2>
+            
+            <div>
+                Image & the data
+           
+            {
+                allPosts.map((post, index) => (
+                    <div key={index}>
+                        <h3 className="post-display-title">
+                            {post.title}
+                        </h3>
+                        <div>
+                            <img className="post-display-img"
+                                src={post.imageUrl}
+                                alt={post.title}
+                            />
+                            <p>{post.category}</p>
+                            <Button className="post-display-viewpost-btn"
+                                onClick={() => navigate(`/post/${post._id}`)}
+                            >View Post </Button>
+                        </div>
+                    </div>
+                ))
+                
+            }
+             </div>
+        </div>
+        
         </div>
     )
-};
+}
 
 export default AllPosts;
+
+
+
+
+
+// {
+//     title: {
+//         type: String,
+
+//     },
+
+//     description: {
+//         type: String
+//     },
+
+//     category: {
+//         type: String,
+
+//     },
+
+//     imageUrl: {
+//         type: String,
+//     },
+
+//     videoURL: {
+//         type: String,
+//     },
+// },
+// { timestamps: true }
