@@ -20,7 +20,7 @@ const AboutInfo = () =>{
                             <h1>Who are we?</h1>
                             <h4>We are warriors
                             </h4>
-                            <h5>who fight bad days with incredibly cute animal pictures, videos and commentary.<br/> Help us fight the good fight against boredom, grumpiness, and stinky attitudes! Follow the 5 sacred rules and send us a content submission with the form below to contribute to our cause!<br/>The 5 sacred rules:<br/>
+                            <h5>who fight bad days with incredibly cute animal pictures, videos and commentary.<br/> Help us fight the good fight against boredom, grumpiness, and stinky attitudes! Follow the 5 sacred rules and send us a content submission with the form below to contribute to our cause!<br/><br/>The 5 sacred rules:<br/>
                                     <br/>Rule 5 -  it must be cute<br/>
                                     <br/>Rule 4-  it must be kind<br/>
                                     <br/>Rule 3- it must be sweet<br/>
