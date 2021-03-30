@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import axios from 'axios';
-import {Link} from '@reach/router';
-import {Form} from 'react-bootstrap';
+import { navigate, Link } from '@reach/router';
+import { Form, Row, Col, Container, Button } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 const AdminLogin = (props) => {
         const [name, setName]= useState('');
@@ -15,7 +16,11 @@ const AdminLogin = (props) => {
                 password: password})
             .then(response => {
                 console.log("login data", response.data);
+<<<<<<< HEAD
                 Nav(`/admin/home`)
+=======
+                navigate(`/admin/home`)
+>>>>>>> 3f8d8c17cf9c7dfc03eec04f1f8320cb611f6e26
             })
             .catch(error => {
                 console.log("problem with login.js",error);
@@ -24,24 +29,36 @@ const AdminLogin = (props) => {
     };
     return (
         <div>
-            <h1> AdminLogin.js </h1>
-            <p><Link to= '/admin/home'>Admin Home</Link></p> 
-            <Form>
-                <Form.Group controlId="formAdminName">
-                    <Form.Label>Admin Name:</Form.Label>
-                    <Form.Control type="text" placeholder="Enter Admin Name" />
-                </Form.Group>
-
-                <Form.Group controlId="formBasicPassword">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" placeholder="Password" />
-                </Form.Group>
-
-                <button variant="primary" type="submit">
-                    Submit
-                </button>
-            </Form>
-
+            <Container>
+                <Row className="justify-content-md-center">
+                    <Col xs={6} >
+                    <p><Link to='/admin/home'>Admin Home</Link></p>
+                    <p>{errMessage? errMessage: ""}</p>
+                        <Form onSubmit={login}>
+                            <h1>Welcome Back! Please log in </h1>
+                            <Form.Group controlId="formAdminName">
+                                <Form.Label>Admin Name:</Form.Label>
+                                <Form.Control 
+                                type="text" 
+                                placeholder="Enter Admin Name"
+                                value={name}
+                                onChange={(e) => setName(e.target.value)} />
+                            </Form.Group>
+                            <Form.Group controlId="formBasicPassword">
+                                <Form.Label>Password</Form.Label>
+                                <Form.Control
+                                    type="password" 
+                                    placeholder="Password"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)} />
+                            </Form.Group>
+                            <Button variant="primary" type="submit">
+                                Submit
+                            </Button>
+                        </Form>
+                    </Col>
+                </Row>
+            </Container>
         </div>
     )
 };

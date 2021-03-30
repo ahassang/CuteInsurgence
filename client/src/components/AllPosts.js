@@ -9,7 +9,7 @@ const AllPosts = (props) => {
     const [allPosts, setAllPosts] = useState([]);
     useEffect(() => {
         axios
-            .get("http://localhost:8000/CuteInsurgence")
+            .get("http://localhost:8000/cuteinsurgence")
             .then((response) => {
                 console.log(response.data);
                 setAllPosts(response.data);
@@ -18,8 +18,8 @@ const AllPosts = (props) => {
                 console.log(err);
             });
     }, []);
-    
-//Waiting for Controllers to be wired 
+
+//Waiting for Controllers/db to be wired 
     return (
         <div className="cuteinsurgence-body-wrapper">
         <div className="AllPosts-post-display">
