@@ -1,6 +1,6 @@
 import './App.css';
 import React from 'react';
-import {Router} from '@reach/router';
+import { Router } from '@reach/router';
 import Header from './views/Header';
 import AllPosts from './components/AllPosts';
 import AboutUs from './views/AboutUs';
@@ -13,13 +13,14 @@ function App() {
   return (
     <div className="App">
       <Header />
-        <Router>
-          <AllPosts path= '/cuteinsurgence' />
-          <AboutUs path= '/aboutus' />
-          <OnePost path= '/posts/:id' />
-          <AdminLogin path='/admin/login'/>
-          <Admin path= '/admin/home' />
-        </Router>
+      <Router>
+        <AllPosts path='/cuteinsurgence' />
+        <AboutUs path='/aboutus' />
+        <OnePost path='/posts/:id' />
+        <AdminLogin path='/admin/login' />
+        <Admin path='/admin/home' />
+        <UpdatePost path='/admin/update/:id' />
+      </Router>
     </div>
   );
 }

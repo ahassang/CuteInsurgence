@@ -22,28 +22,25 @@ const AllPosts = (props) => {
     return (
         <div className="cuteinsurgence-body-wrapper">
             <div className="AllPosts-post-display">
-
-
                 <div >
                     {
                         allPosts.map((post, index) => (
                             <div className="cuteinsurgence-single-post" key={index}>
-                                <h3 className="post-display-title">
+                                <h2 className="post-display-title">
                                     {post.title}
-                                </h3>
+                                </h2>
                                 <div>
                                     <img className="post-display-img"
                                         src={post.imageUrl}
                                         alt={post.title}
                                     />
-                                    <p>Category: {post.category}</p>
+                                    <h4 className='post-display-category'>Category: {post.category}</h4>
                                     <Button className="post-display-viewpost-btn"
                                         onClick={() => navigate(`/posts/${post._id}`)}
                                     >View Post </Button>
                                 </div>
                             </div>
                         ))
-
                     }
                 </div>
             </div>

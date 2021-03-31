@@ -39,13 +39,15 @@ const submitForm = (e) => {
 return(
     <div>
         <Container className='w-100 mx-auto p-2 px-4 border border-dark'>
+        <p>Post Form</p>
             <Form onSubmit={submitForm}>
                 <Row>
                     <Col className='p-2 m-2'>
                         <Form.Group as={Row} controlId='formCategory'>
-                            <Form.Label column sm="2">Category</Form.Label>
+                            
+                            <Form.Label column sm="2">Title</Form.Label>
                             <Col sm="10">
-                                <Form.Control type='category' name="category" onChange={(e) => onChange(e)} placeholder='Category' required />
+                                <Form.Control type='category' name="category" onChange={(e) => onChange(e)} placeholder='Title' required />
                                 {errs.category ? (<span className='text-danger'>{errs.category.message}</span>) : null}
                             </Col>
                         </Form.Group>
@@ -60,12 +62,12 @@ return(
                             <Col sm="10">
                                 <Form.Control type='videoURL' name="videoURL" onChange={(e) => onChange(e)} placeholder='videoURL' />
                             </Col>
-                        </Form.Group>
+                        {/* </Form.Group>
                         <Form.Group as={Row} controlId='formUser'>
                             <Form.Label column sm="2">User</Form.Label>
                             <Col sm="10">
                                 <Form.Control type='user' name="user" onChange={(e) => onChange(e)}  placeholder='user' />
-                            </Col>
+                            </Col> */}
                         </Form.Group>
                     </Col>
                     <Col className='p-1 m-1'>
