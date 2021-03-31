@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link, navigate } from '@reach/router';
-import { Button } from 'react-bootstrap';
+import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 
 
 const AllPosts = (props) => {
@@ -20,30 +20,29 @@ const AllPosts = (props) => {
     }, []);
 
     return (
-        <div className="cuteinsurgence-body-wrapper">
-            <div className="AllPosts-post-display">
-                <div >
+        <div>
+            <Container className='cuteinsurgence-single-post'> 
+                <Row>
+                    <Col>
                     {
                         allPosts.map((post, index) => (
-                            <div className="cuteinsurgence-single-post" key={index}>
-                                <h2 className="post-display-title">
-                                    {post.title}
-                                </h2>
-                                <div>
-                                    <img className="post-display-img"
-                                        src={post.imageUrl}
-                                        alt={post.title}
-                                    />
-                                    <h4 className='post-display-category'>Category: {post.category}</h4>
-                                    <Button className="post-display-viewpost-btn"
-                                        onClick={() => navigate(`/posts/${post._id}`)}
-                                    >View Post </Button>
-                                </div>
+                            <div key={index}>
+                                <Card style={{ width: '18rem' }}>
+                                    <Card.Img variant="top" src={post.imageUrl} alt={post.title}/>
+                                    <Card.Body>
+                                        <Card.Title>{post.title}</Card.Title>
+                                        <Card.Text>
+                                        {post.category} : {post.description}
+                                        </Card.Text>
+                                        <Button variant="primary" onClick={() => navigate(`/posts/${post._id}`)}>View Post </Button>
+                                    </Card.Body>
+                                </Card>
                             </div>
                         ))
                     }
-                </div>
-            </div>
+                    </Col>
+                </Row>
+            </Container>
         </div>
     )
 }
