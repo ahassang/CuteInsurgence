@@ -79,13 +79,12 @@ return(
                                 <Form.Control type='videoURL' name="videoURL" value = {state.videoURL} onChange={(e) => onChange(e)} placeholder='videoURL' />
                             </Col>
                         </Form.Group>
-                    </Col>
-                    <Col className='p-1 m-1'>
                         <Form.Group className=' border border-dark' controlId='textarea'>
                             <Form.Control as="textarea" rows={10} type='description' name="description" value = {state.description} onChange={(e) => onChange(e)}  placeholder='description' />
                         </Form.Group>
                         <Button variant='success' type='submit'>submit</Button>
                     </Col>
+                    
                 </Row>
             </Form>
         </Container>

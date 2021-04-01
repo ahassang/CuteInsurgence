@@ -1,87 +1,102 @@
-// import React, { useEffect, useState } from 'react';
-// import axios from 'axios';
-// import { Link, navigate } from '@reach/router';
-// import { Container, Row, Col, Card, Button } from 'react-bootstrap';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { Container, Row, Col, Form, Button, Dropdown, DropdownButton, Image } from 'react-bootstrap';
+import { navigate } from '@reach/router';
 
+const AllSubmissions = (props) => {
 
-// const DropDown = (props) => {
-//     const { id } = props;
-//     const [post, setPost] = useState('');
-//     const [title, setTitle] = useState('');
-//     const [category, setCategory] = useState('');
-//     const [imageURL, setImageURL] = useState('');
-//     const [videoURL, setVideoURL] = useState('');
-//     const [description, setDescription] = useState('');
-//     const [errs, setErrs] = useState({});
+const [allSubmissions, setAllSubmissions] = useState([]);
+const [allSortSubmissions, setAllSortSubmissions] = useState([]);
+const [categoryType, setCategoryType] = useState('Sort by');
+useEffect(() => {
+    axios
+        .get("http://localhost:8000/api/submissions")
+        .then((response) => {
+            console.log('response.data');
+            console.log(response.data);
+            setAllSubmissions(response.data);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+}, []);
 
-//     useEffect(() => {
-//         axios
-//             .get("http://localhost:8000/api/posts/" + id)
-//             .then((res) => {
-//                 const singlePost = res.data;
-//                 console.log(singlePost);
-//                 setTitle(singlePost.title);
-//                 setCategory(singlePost.category);
-//                 setImageURL(singlePost.imageURL);
-//                 setVideoURL(singlePost.videoURL);
-//                 setDescription(singlePost.description);
-//         });
-//     }, []);
+useEffect(() => {
+    axios
+        .get(`http://localhost:8000/api/submissions/category/${categoryType}`)
+        .then((response) => {
+            console.log('response.data');
+            console.log(response.data);
+            setAllSortSubmissions(response.data);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+}, []);
 
-//     const DropDown = (e) => {
-//         e.preventDefault();
-//         axios.get("http://localhost:8000/api/posts/" + id, {
-//             title: title,
-//             category: category,
-//             imageURL: imageURL,
-//             videoURL: videoURL,
-//             description: description
-//         })
-//             .then((response) => {
-//                 if (response.data.errors) {
-//                     console.log(response.data.errors)
-//                     setErrs(response.data.errors)
-//                 } else {
-//                     console.log(response.data);
-//                     navigate(`/posts/${response.data._id}`);
-//                 }
-//             })
-//             .catch((err) => console.log("error with UpdatePost.js", err))
-//     };
+return (
+    <div className='w-100 mx-auto p-2 px-4 border border-dark'>
+        <Form.Control className='bg-success w-50 mx-auto' as="select" type='category' name="category" value={categoryType} onChange={(e) => setCategoryType(e.target.value)} placeholder='Category' required>
+            <option>Sort by</option>
+            <option value='Farm Animals'>Farm Animals</option>
+            <option value='Wildlife'>Wildlife</option>
+            <option value='Dogs'>Dogs</option>
+            <option value='Cats'>Cats</option>
+            <option value='Birds'>Birds</option>
+            <option value='Reptiles'>Reptiles</option>
+            <option value='Fish'>Fish</option>
+            <option value='Bugs'>Bugs</option>
+            <option value='Rodents'>Rodents</option>
+        </Form.Control>
+        <h4>You selected {categoryType}</h4>
+        { categoryType === 'Sort by'?
+            <div>
+                {
+                    allSubmissions.map((element, index) => (
+                        <div key={index} className='border border-dark mb-2 p-1'>
+                            <Container>
+                                <Row>
+                                    <Col xs={6} md={4}>
+                                        <Image src={element.imageURL} thumbnail />
+                                    </Col>
+                                    <Col xs={6} md={4}>
+                                        <p>{element.category}</p>
+                                        <p>{element.description}</p>
+                                    </Col>
+                                </Row>
+                                <p>Submitted by: {element.user}</p>
+                                <Button className='p-1 m-1' variant='secondary' >Delete</Button>
+                            </Container>
+                        </div>
+                    ))
+                }
 
+            </div> 
+            :<div>
+                {
+                    allSortSubmissions.map((element, index) => (
+                        <div key={index} className='border border-dark mb-2 p-1'>
+                            <Container>
+                                <Row>
+                                    <Col xs={6} md={4}>
+                                        <Image src={element.imageURL} thumbnail />
+                                    </Col>
+                                    <Col xs={6} md={4}>
+                                        <p>{element.category}</p>
+                                        <p>{element.description}</p>
+                                    </Col>
+                                </Row>
+                                <p>Submitted by: {element.user}</p>
+                                <Button className='p-1 m-1' variant='secondary' >Delete</Button>
+                            </Container>
+                        </div>
+                    ))
+                }
 
-//     return (
-//         <div >
-//             <input type='dropdown' />
-//             {
-//             posts.map((post, key) => {
+            </div>
+        }
+    </div >
+)
+};
 
-//                 return (
-                
-//                 <div className='category' key={key} >{post.category}</div>
-
-//                 )
-//             })}
-//         </div>
-//     )
-// }
-
-// export default DropDown;
-
-
-
-
-// <Form.Control as="select" type='category' name="category" value= {state.category} onChange={(e) => onChange(e)} placeholder='Category'>
-//                                         <option>Select Category</option>
-//                                         <option value= 'Farm Animals'>Farm Animals</option>
-//                                         <option value= 'Wildlife'>Wildlife</option>
-//                                         <option value='Dogs'>Dogs</option>
-//                                         <option value= 'Cats'>Cats</option>
-//                                         <option value= 'Birds'>Birds</option>
-//                                         <option value= 'Reptiles'>Reptiles</option>
-//                                         <option value= 'Fish'>Fish</option>
-//                                         <option value= 'Bugs'>Bugs</option>
-//                                         <option value= 'Rodents'>Rodents</option>
-//                                     </Form.Control>
-
-
+export default AllSubmissions;
