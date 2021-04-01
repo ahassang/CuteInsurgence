@@ -36,7 +36,7 @@ const AllPosts = (props) => {
                 <option value='Bugs'>Bugs</option>
                 <option value='Rodents'>Rodents</option>
             </Form.Control>
-            {/* <DropDown /> */}
+
             <Container className='cuteinsurgence-single-post'>
                 <Row>
                     <Col>
