@@ -42,7 +42,7 @@ return(
         <p className='mb-1'>Post Form</p>
             <Form onSubmit={submitForm}>
                 <Row>
-                    <Col className='p-2 m-2'>
+                    <Col className='p-2'>
                         <Form.Group as={Row} controlId='formTitle'>
                             <Form.Label column sm="2">Title</Form.Label>
                             <Col sm={10}>
