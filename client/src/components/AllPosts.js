@@ -21,7 +21,7 @@ const AllPosts = (props) => {
 
     return (
         <div className='w-100 mx-auto p-2 px-4 border border-dark'>
-            <Form.Control className='bg-success w-50 mx-auto' as="select" type='category' name="category" value={categoryType} onChange={(e) => setCategoryType(e.target.value)} placeholder='Category' required>
+            <Form.Control className='success w-50 mx-auto' as="select" type='category' name="category" value={categoryType} onChange={(e) => setCategoryType(e.target.value)} placeholder='Category' required>
                 <option>All Cuties</option>
                 <option value='Farm Animals'>Farm Animals</option>
                 <option value='Wildlife'>Wildlife</option>
