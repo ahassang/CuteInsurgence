@@ -33,7 +33,7 @@ const AllSubmissions = (props) => {
                 <option value='Rodents'>Rodents</option>
             </Form.Control>
             { categoryType === 'Sort by' ?
-                <div>
+                <div className='myscroll'>
                     {
                         allSubmissions.map((element, index) => (
                             <div key={index} className='border border-dark mb-2 p-1'>
@@ -55,7 +55,7 @@ const AllSubmissions = (props) => {
                     }
 
                 </div>
-                : <div>
+                : <div className='myscroll'>
                     {
                         allSubmissions.filter(ele => ele.category === categoryType).map((element, index) => (
                             <div key={index} className='border border-dark mb-2 p-1'>
