@@ -79,7 +79,7 @@ return(
                                 <Form.Control type='videoURL' name="videoURL" value = {state.videoURL} onChange={(e) => onChange(e)} placeholder='videoURL' />
                             </Col>
                         </Form.Group>
-                        <Form.Group className=' border border-dark m-2' controlId='textarea'>
+                        <Form.Group className=' border border-dark' controlId='textarea'>
                             <Form.Control as="textarea" rows={7} type='description' name="description" value = {state.description} onChange={(e) => onChange(e)}  placeholder='description' />
                         </Form.Group>
                         <Button variant='success' type='submit'>submit</Button>
