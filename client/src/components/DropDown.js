@@ -4,6 +4,7 @@ import { Container, Row, Col, Form, Button, Dropdown, DropdownButton, Image } fr
 import { navigate } from '@reach/router';
 
 const DropDown = (props) => {
+const AllSubmissions = (props) => {
 
 const [allSubmissions, setAllSubmissions] = useState([]);
 const [allSortSubmissions, setAllSortSubmissions] = useState([]);

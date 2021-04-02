@@ -20,8 +20,8 @@ const AllPosts = (props) => {
 
 
     return (
-        <div className='cuteinsurgence-single-post'>
-            <Form.Control className='success w-50 mx-auto' as="select" type='category' name="category" value={categoryType} onChange={(e) => setCategoryType(e.target.value)} placeholder='Category' required>
+        <div className='w-100 mx-auto p-2 px-4 border border-dark'>
+            <Form.Control className='bg-success w-50 mx-auto' as="select" type='category' name="category" value={categoryType} onChange={(e) => setCategoryType(e.target.value)} placeholder='Category' required>
                 <option>All Cuties</option>
                 <option value='Farm Animals'>Farm Animals</option>
                 <option value='Wildlife'>Wildlife</option>
@@ -84,6 +84,9 @@ const AllPosts = (props) => {
 
             {/* <Container className='cuteinsurgence-single-post'>
                 
+
+            <Container className='cuteinsurgence-single-post'>
+                <Row>
                     <Col>
                         {
                             allPosts.map((post, index) => (
@@ -110,4 +113,3 @@ export default AllPosts;
 
 
 
-{/* allPosts.filter(post => post.category === categoryType).map(post => { // Do something here }); */ }
