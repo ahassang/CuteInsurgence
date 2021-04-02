@@ -26,7 +26,7 @@ const Header = () =>{
                                         </h5>
                                         <Nav className="justify-content-center" activeKey="/home">
                                         <Nav.Item>
-                                            <Nav.Link href="/aboutus">About Us / Create Post</Nav.Link>
+                                            <Nav.Link href="/aboutus">About Us</Nav.Link>
                                         </Nav.Item>
                                         <Nav.Item>
                                             <Nav.Link eventKey="link-1" href=" /cuteinsurgence">Home</Nav.Link>

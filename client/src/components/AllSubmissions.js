@@ -21,16 +21,18 @@ const AllSubmissions = (props) => {
     }, []);
 
     const deleteSubmission = (id) => {
-        axios.delete(`http://localhost:8000/api/submissions/${id}`)
+        axios.delete("http://localhost:8000/api/submissions/" + id)
             .then((res) => {
-                const deletedsub = res.data;
-                console.log(deletedsub);
-                navigate('/cuteinsurgence')
+                const deletedSub = res.data;
+                console.log(deletedSub);
+                const filteredSubArray = allSubmissions.filter((submission)=> submission._id !== id);
+                setAllSubmissions(filteredSubArray)
             })
             .catch((err) => {
                 console.log(err);
             });
-    }//end delete
+    }
+
 
     return (
         <div className='w-100 mx-auto p-2 px-4 border border-dark'>
@@ -62,7 +64,7 @@ const AllSubmissions = (props) => {
                                         </Col>
                                     </Row>
                                     <p>Submitted by: {element.user}</p>
-                                    <Button className='p-1 m-1' variant='secondary' onClick={() => deleteSubmission(element._id)} >Delete</Button>
+                                    <Button className='p-1 m-1' variant='secondary' onClick={()=> deleteSubmission(element._id)} >Delete</Button>
                                 </Container>
                             </div>
                         ))
@@ -84,7 +86,7 @@ const AllSubmissions = (props) => {
                                         </Col>
                                     </Row>
                                     <p>Submitted by: {element.user}</p>
-                                    <Button className='p-1 m-1' variant='secondary' onClick={() => deleteSubmission(element._id)} >Delete</Button>
+                                    <Button className='p-1 m-1' variant='warning' onClick={()=> deleteSubmission(element._id)} >Delete</Button>
                                 </Container>
                             </div>
                         ))
