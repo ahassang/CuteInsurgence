@@ -24,7 +24,7 @@ const SubmissionForm = () => {
     const submitForm = (e) => {
         e.preventDefault();
         axios
-            .post('http://localhost:8000/api/submissions', state)
+            .post('http://localhost:8000/api/posts', state)
             .then((res) => {
                 console.log(res);
                 if (res.data.errors) {
