@@ -15,16 +15,13 @@ const AllPosts = (props) => {
             .then((response) => {
                 console.log(response.data);
                 setAllPosts(response.data);
-            })
-            .catch((err) => {
-                console.log(err);
             });
     }, []);
 
 
     return (
         <div className='w-100 mx-auto p-2 px-4 border border-dark'>
-            <Form.Control className='bg-success w-50 mx-auto' as="select" type='category' name="category" value={categoryType} onChange={(e) => setCategoryType(e.target.value)} placeholder='Category' required>
+            <Form.Control className='success w-50 mx-auto' as="select" type='category' name="category" value={categoryType} onChange={(e) => setCategoryType(e.target.value)} placeholder='Category' required>
                 <option>All Cuties</option>
                 <option value='Farm Animals'>Farm Animals</option>
                 <option value='Wildlife'>Wildlife</option>
@@ -36,6 +33,57 @@ const AllPosts = (props) => {
                 <option value='Bugs'>Bugs</option>
                 <option value='Rodents'>Rodents</option>
             </Form.Control>
+            {/* Test */}
+            <div>
+                {categoryType === 'All Cuties' ?
+                    <div>
+                        {
+                            allPosts.map((post, index) => (
+                                <div key={index} className='posts-all'>
+                                    <Container>
+                                        <Row>
+                                            <Col xs={6} md={4}>
+                                                <Image src={post.imageURL} thumbnail />
+                                            </Col>
+                                            <Col xs={6} md={4}>
+                                                <p className='category-font'>{post.title}</p>
+                                                <p className='category-font'>{`Category: ${post.category}`}</p>
+                                                <p>{post.description}</p>
+                                            </Col>
+                                        </Row>
+                                        <p>Submitted by: {post.user}</p>
+                                        <Button className="view-post-btn" variant="primary" onClick={() => navigate(`/posts/${post._id}`)}>View Post </Button>
+                                    </Container>
+                                </div>
+                            ))
+                        }
+                    </div>
+                    : <div>
+                        {
+                            allPosts.filter(post => post.category === categoryType).map((post, index) => (
+                                <div key={index} className='border border-dark mb-2 p-1'>
+                                    <Container>
+                                        <Row>
+                                            <Col xs={6} md={4}>
+                                                <Image src={post.imageURL} thumbnail />
+                                            </Col>
+                                            <Col xs={6} md={4}>
+                                                <p>{post.category}</p>
+                                                <p>{post.description}</p>
+                                            </Col>
+                                        </Row>
+                                        <p>Submitted by: {post.user}</p>
+
+                                    </Container>
+                                </div>
+                            ))
+                        }
+                    </div>
+                }
+            </div>
+
+            {/* <Container className='cuteinsurgence-single-post'>
+                
 
             <Container className='cuteinsurgence-single-post'>
                 <Row>
@@ -57,72 +105,11 @@ const AllPosts = (props) => {
                             ))
                         }
                     </Col>
-                </Row>
-
-            </Container>
-
-            <div>
-                {categoryType === 'All Cuties' ?
-                    <div>
-                        {
-                            allPosts.map((element, index) => (
-                                <div key={index} className='border border-dark mb-2 p-1'>
-                                    <Container>
-                                        <Row>
-                                            <Col xs={6} md={4}>
-                                                <Image src={element.imageURL} thumbnail />
-                                            </Col>
-                                            <Col xs={6} md={4}>
-                                                <p>{element.category}</p>
-                                                <p>{element.description}</p>
-                                            </Col>
-                                        </Row>
-                                        <p>Submitted by: {element.user}</p>
-                                        <Button className='p-1 m-1' variant='secondary' >Delete</Button>
-                                    </Container>
-                                </div>
-                            ))
-                        }
-                    </div>
-                    : <div>
-                        {
-                            allPosts.filter(post => post.category === categoryType).map((element, index) => (
-                                <div key={index} className='border border-dark mb-2 p-1'>
-                                    <Container>
-                                        <Row>
-                                            <Col xs={6} md={4}>
-                                                <Image src={element.imageURL} thumbnail />
-                                            </Col>
-                                            <Col xs={6} md={4}>
-                                                <p>{element.category}</p>
-                                                <p>{element.description}</p>
-                                            </Col>
-                                        </Row>
-                                        <p>Submitted by: {element.user}</p>
-                                        <Button className='p-1 m-1' variant='secondary' >Delete</Button>
-                                    </Container>
-                                </div>
-                            ))
-                        }
-                    </div>
-                }
-            </div>
+            </Container> */}
         </div>
     )
 }
-
 export default AllPosts;
-
-
-
-
-
-{/* allPosts.filter(post => post.category === categoryType).map(post => { // Do something here }); */ }
-
-
-
-
-
 
 
 
