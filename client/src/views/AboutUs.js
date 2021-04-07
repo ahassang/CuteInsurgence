@@ -8,11 +8,9 @@ const AboutUs = () => {
                     <div className="section">
                         <AboutInfo />
                     </div>
-                <div className="divider"></div>
                     <div className="section">
                         <SubmissionForm />
                     </div>
-                
             </div>
         
     )

@@ -2,18 +2,25 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import {Row, Col} from 'react-materialize';
 import {navigate} from '@reach/router';
+import AdminAuth from './AdminAuth';
 
 const OnePost = (props) => {
     const { id } = props;
-
     const [post, setPost] = useState({});
+    const [admin, setAdmin] = useState({});
 
     useEffect(() => {
         axios.get("http://localhost:8000/api/posts/" + id)
             .then((res) => {
+                console.log(res);
+                if(res.data.cookie) {
+                    setAdmin(res.data.cookie);
+                    setPost(res.data);
+                } else {
                 const singlePost = res.data;
                 console.log(singlePost);
                 setPost(singlePost);
+                }
             });
     }, [id]);
 
@@ -75,13 +82,14 @@ const OnePost = (props) => {
                         </Col>
                     </Row>
                     <Row>
-                        <Col className= "col s12" >
-                            
-                            
-                            <div className="right-align">
-                                <a className="btn-floating btn-large cyan pulse" style={{marginRight:"40px", marginBottom:"20px"}} href={`/admin/update/${post._id}`}><i className="material-icons">edit</i></a>
-                            </div>
-                            <button onClick={() => deletePost(post._id)}>Delete</button>
+                        <Col className= "col s12 push-s4" >
+                            <AdminAuth/>
+                            {/* <button style={{margin: "10px"}} onClick={() => navigate(`/admin/update/${post._id}`)}class="btn-small waves-effect green waves-light" type="submit" name="action">Edit
+                            <i class="material-icons right">edit</i>
+                            </button>
+                            <button onClick={() => deletePost(post._id)}class="btn-small waves-effect red waves-light" type="submit" name="action">Delete
+                            <i class="material-icons right">delete</i>
+                            </button> */}
                     </Col>
                 </Row>
         </div>
