@@ -9,7 +9,7 @@ const AllSubmissions = (props) => {
     const [categoryType, setCategoryType] = useState('Sort by');
     
     useEffect(() => {
-        axios.get("http://localhost:8000/api/submissions") 
+        axios.get("http://localhost:8000/api/submissions", {withCredentials: true}) 
             .then((response) => {
                 console.log('response.data');
                 console.log(response.data);

@@ -7,7 +7,7 @@ import AdminAuth from './AdminAuth';
 const OnePost = (props) => {
     const { id } = props;
     const [post, setPost] = useState({});
-    const [admin, setAdmin] = useState({});
+    const [admin, setAdmin] = useState('');
 
     useEffect(() => {
         axios.get("http://localhost:8000/api/posts/" + id)
@@ -23,6 +23,17 @@ const OnePost = (props) => {
                 }
             });
     }, [id]);
+
+    useEffect(() => {
+        axios.get("http://localhost:8000/api/admin/home", {withCredentials: true})
+            .then((res) => {
+                console.log(res);
+                setAdmin(res.data)
+                })
+            .catch(err => console.log("error with buttons.js"+ err))   
+    }, []);
+
+    
 
 
     const deletePost = (id) => {
@@ -82,15 +93,19 @@ const OnePost = (props) => {
                         </Col>
                     </Row>
                     <Row>
-                        <Col className= "col s12 push-s4" >
-                            <AdminAuth/>
-                            {/* <button style={{margin: "10px"}} onClick={() => navigate(`/admin/update/${post._id}`)}class="btn-small waves-effect green waves-light" type="submit" name="action">Edit
-                            <i class="material-icons right">edit</i>
-                            </button>
-                            <button onClick={() => deletePost(post._id)}class="btn-small waves-effect red waves-light" type="submit" name="action">Delete
-                            <i class="material-icons right">delete</i>
-                            </button> */}
-                    </Col>
+                        {admin?
+                            <div>
+                                <Col className= "col s12 push-s4" >
+                                    <button style={{margin: "10px"}} onClick={() => navigate(`/admin/update/${post._id}`)}class="btn-small waves-effect green waves-light" type="submit" name="action">Edit
+                                    <i class="material-icons right">edit</i>
+                                    </button>
+                                    <button onClick={() => deletePost(post._id)}class="btn-small waves-effect red waves-light" type="submit" name="action">Delete
+                                    <i class="material-icons right">delete</i>
+                                    </button>
+                                </Col>
+                            </div>
+                        : null
+                        }
                 </Row>
         </div>
     )

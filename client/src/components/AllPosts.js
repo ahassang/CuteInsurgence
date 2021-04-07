@@ -26,10 +26,12 @@ const AllPosts = (props) => {
         M.FormSelect.init(elems);
     });
 
+    
+
     return (
         <div className= "container componentBackground">
-            <div>
-                <form className='custom-select col s2' style={{backgroundImage:"linear-gradient(to right ,darkorange, #ee5923, #ee6e73", borderRadius:"50px", width:"200px"}}>
+            <Row>
+                <form className='input-field col s2' style={{backgroundImage:"linear-gradient(to right ,darkorange, #ee5923, #ee6e73", borderRadius:"50px", width:"200px", textAlign:'center', padding: "5px"}}>
                     <select
                         type='category' 
                         name="category" 
@@ -48,7 +50,7 @@ const AllPosts = (props) => {
                         <option value='Rodents'>Rodents</option>
                     </select> 
                 </form>
-            </div>
+            </Row>
             <div>
                 {categoryType === 'All Cuties' ? 
                     <div>
