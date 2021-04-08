@@ -29,7 +29,6 @@ const AdminLogin = (props) => {
         }}>
             <div className= "row">
                 <div className="col s6">
-                        <p><Link to='/admin/home'>Admin Home</Link></p>
                         <p>{errMessage ? errMessage : ""}</p>
                         <form onSubmit={login}>
                             <h3>Welcome Back! Please log in </h3>
@@ -55,6 +54,8 @@ const AdminLogin = (props) => {
                         </form>
                     </div>
                 </div>
+                <p><Link to='/admin/home'>Admin Home</Link></p>
+
             </div>
     )
 };
