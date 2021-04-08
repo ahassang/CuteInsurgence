@@ -104,8 +104,13 @@ const OnePost = (props) => {
                                     </button>
                                 </Col>
                             </div>
-                        : null
-                        }
+
+                            <button 
+                                style={{ marginBottom: "20px", borderRadius: "16px" }}
+                                className="btn btn-small pink darken-1 waves-effect waves-light"
+                                onClick={() => deletePost(post._id)}>Delete
+                            </button>
+                    </Col>
                 </Row>
         </div>
     )
