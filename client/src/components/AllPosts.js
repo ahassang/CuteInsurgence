@@ -26,6 +26,8 @@ const AllPosts = (props) => {
         M.FormSelect.init(elems);
     });
 
+    
+
     return (
         <div className= "container componentBackground">
             <div>
@@ -48,7 +50,7 @@ const AllPosts = (props) => {
                         <option value='Rodents'>Rodents</option>
                     </select> 
                 </form>
-            </div>
+            </Row>
             <div>
                 {categoryType === 'All Cuties' ? 
                     <div>
